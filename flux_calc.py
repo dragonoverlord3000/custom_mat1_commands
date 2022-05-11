@@ -32,11 +32,11 @@ def flux(V, r, Iu, Iv, format="latex", verbose=False):
         print(r"r_u^\prime(u,v) = " + sp.latex(r_u))
         print(r"r_v^\prime(u,v) = " + sp.latex(r_v))
         print(r"r_u \times r_v = " + sp.latex(crossed_simplified))
-        explanation_str = r"\begin{align}Flux(V, F_r) = \int V \cdot n_{F_r} d\mu = "
+        explanation_str = r"Flux(V, F_r) = \int V \cdot n_{F_r} d\mu = "
         int_v = r"\int_{" + str(Iv[0]) + "}^{" + str(Iv[1]) + "}"
         int_u = r"\int_{" + str(Iu[0]) + "}^{" + str(Iu[1]) + "}"
         subs_dict = {x: r[0], y:r[1], z:r[2]}
-        explanation_str += int_v + int_u + sp.latex(V.subs(subs_dict)) + r"\cdot" + "\left(" + sp.latex(r_u) + r"\times" + sp.latex(r_v) + "\right)" + "dudv = "
+        explanation_str += int_v + int_u + sp.latex(V.subs(subs_dict)) + r"\cdot" +r"\left(" + sp.latex(r_u) + r"\times" + sp.latex(r_v) + r"\right)" + "dudv = "
         explanation_str += int_v + int_u + sp.latex(V.subs(subs_dict)) + r"\cdot" + sp.latex(crossed_simplified) + "dudv = "
         explanation_str += int_v + int_u + sp.latex(dot_product) + "dudv = "
         explanation_str += int_v + sp.latex(int_u_eval) + "dv = "

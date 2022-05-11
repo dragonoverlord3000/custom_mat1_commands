@@ -46,6 +46,9 @@ from Jacobian_calc import Jacobian
 # Vector field potential calculator
 from vector_potential_calc import vector_potential
 
+# Quadratic form calculator
+from quadratic_form import quadratic_form
+
 # Import plotters
 from plotters.param_surface_plotter import param_surface_plotter
 from plotters.param_curve_plotter import param_curve_plotter
@@ -57,7 +60,8 @@ from show_math import show_math
 from tools import cross_product, Qx, Qy, Qz, gradient, div, rot
 
 # Sympy helper stuff
-Matrix = sp.Matrix
+S = sp.S
+matrix = Matrix = sp.Matrix
 vector = lambda *args: sp.Matrix([*args])
 hessian = sp.hessian # e.g. >>>sp.hessian(x**2 + y**2 + 2*z**2 + z, [x,y,z])
 
@@ -74,15 +78,6 @@ pi = sp.pi
 
 # Sympy symbols
 u,v,w,x,y,z = sp.symbols("u v w x y z")
-
-
-
-
-
-
-
-
-
 
 
 

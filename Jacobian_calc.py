@@ -33,7 +33,6 @@ def Jacobian(r, format="latex", verbose=False):
         return Jacobian
 
 
-
 # Jacobian helper functions
 def JacobianSolid(r, format="latex", verbose=False):
     """Jacobian for solid figure
@@ -50,7 +49,12 @@ def JacobianSolid(r, format="latex", verbose=False):
     result = sp.Abs(sp.det(sp.Matrix([[r_u[0],r_u[1],r_u[2]], [r_v[0], r_v[1], r_v[2]], [r_w[0], r_w[1], r_w[2]]])))
     
     if verbose:
-        pass       
+        print(f"""
+              r_u^\\prime(u,v) &= {sp.latex(r_u)} \\\\
+              r_v^\\prime(u,v) &= {sp.latex(r_v)} \\\\
+              r_w^\\prime(u,v) &= {sp.latex(r_v)} \\\\
+              Jakobi_r = \\left| \det\\begin{bmatrix} {r_u[0]} & {r_v[0]} & {r_w[0]} \\\\ {r_u[1]} & {r_v[1]} & {r_w[1]} \\\\ {r_u[2]} & {r_v[2]} & {r_w[2]} \\end{bmatrix} \\right| = {result}
+              """)    
 
     return result
 
@@ -62,13 +66,18 @@ def JacobianSurface(r, format="latex", verbose=False):
         format (str, optional): _description_. Defaults to "latex".
         verbose (bool, optional): _description_. Defaults to False.
     """
-    u,v = sp.symbols("u v w")
+    u,v = sp.symbols("u v")
     r_u = sp.diff(r, u)
     r_v = sp.diff(r, v)
-    result = sp.Abs(cross_product(r_u, r_v))
+    result = sp.Abs(cross_product(r_u, r_v).norm())
 
     if verbose:
-        pass
+        print(f"""
+              r_u^\\prime(u,v) &= {sp.latex(r_u)} \\\\
+              r_v^\\prime(u,v) &= {sp.latex(r_v)} \\\\
+              r_w^\\prime(u,v) &= {sp.latex(r_v)} \\\\
+              Jakobi_r = \\left| \det\\begin{"\{bmatrix\}"} i & j & k \\\\ {r_u[0]} & {r_u[1]} & {r_u[2]} \\\\ {r_v[0]} & {r_v[1]} & {r_v[2]} \\end{"\{bmatrix\}"} \\right| = {sp.latex(result)}
+              """)    
     
     return result
 
@@ -80,13 +89,17 @@ def JacobianPlanar(r, verbose=False):
         format (str, optional): _description_. Defaults to "latex".
         verbose (bool, optional): _description_. Defaults to False.
     """
-    u,v = sp.symbols("u v w")
+    u,v = sp.symbols("u v")
     r_u = sp.diff(r, u)
     r_v = sp.diff(r, v)
     result = sp.Abs(sp.det(sp.Matrix([[r_u[0], r_u[1]], [r_v[0], r_v[1]]])))
 
     if verbose:
-        pass
+        print(f"""
+              r_u^\\prime(u,v) &= {sp.latex(r_u)} \\\\
+              r_v^\\prime(u,v) &= {sp.latex(r_v)} \\\\
+              Jakobi_r = \\left| \det\\begin{"\{bmatrix\}"} {r_u[0]} & {r_v[0]} \\\\ {r_u[1]} & {r_v[1]} \\end{"\{bmatrix\}"} \\right| = {sp.latex(result)}
+              """)
     
     return result
 
